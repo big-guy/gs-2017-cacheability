@@ -1,6 +1,5 @@
 = Moving Existing Builds Towards Full Cacheability
-Stefan Wolf (@wolfs42), Gradle
-Sterling Greene (@argfile), Gradle
+Stefan Wolf (@wolfs42) & Sterling Greene (@argfile), Gradle
 2017-07-22
 :revnumber: {project-version}
 :example-caption!:
@@ -56,8 +55,11 @@ buildCache {
 
 == Thank you!
 
-* https://github.com/big-guy/gs-2017-cacheability[Slides and code]
-* https://guides.gradle.org/using-build-cache[Build Cache Gradle Guide]
-* http://gradle.org/documentation/[Gradle documentation]
+* Slides: 
+    - https://github.com/big-guy/gs-2017-cacheability[]
+* Build Cache Guide: 
+    - https://guides.gradle.org/using-build-cache[]
+* https://twitter.com/wolfs42[Stefan Wolf (@wolfs42)]
+* https://twitter.com/argfile[Sterling Greene (@argfile)]
 
 Learn more at https://gradle.org[www.gradle.org]
