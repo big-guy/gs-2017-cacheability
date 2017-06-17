@@ -1,65 +1,93 @@
 = Moving Existing Builds Towards Full Cacheability
-Stefan Wolf (@wolfs42) & Sterling Greene (@argfile), Gradle
-2017-07-22
+:title-slide-background-image: title.jpeg
+:title-slide-transition: zoom
+:title-slide-transition-speed: fast
 :revnumber: {project-version}
-:example-caption!:
 ifndef::imagesdir[:imagesdir: images]
 ifndef::sourcedir[:sourcedir: ../java]
 :deckjs_transition: fade
 :navigation:
 :menu:
 :status:
-:adoctor: http://asciidoctor.org/[Asciidoctor]
-:gradle: http://gradle.org[Gradle]
+
+https://twitter.com/wolfs42[Stefan Wolf (@wolfs42)] & https://twitter.com/argfile[Sterling Greene (@argfile)]
 
 == Agenda
 
-TBD
+- Quick overview of the build cache
+- Build cache concepts
+- Demos
+- Q&A
 
 == Build cache
 
-=== The Gradle build cache
+=== What is it?
 
 * Released with Gradle 3.5
-* Caches outputs of tasks
-** local cache
-** remote cache
-** cache backend provided with Gradle Enterprise
+* Stable for Java in 4.0
+* Uniquely identifies outputs of tasks by inputs
+** Keeps them in a local cache
+** Shares them with a remote cache (provided by Gradle Enterprise)
 
-=== The Gradle build cache demo
+=== How does it help?
 
-== CI Integration
+* Save time by reusing outputs from other builds
+** On your machine
+** On CI
 
-=== Snapshots and CI
+[%notitle]
+=== Gradle CI improvements
+image::impact.png[background, size=cover]
 
-* Can setup composite builds on CI
-** allows discovering breakages early
-* Enable build cache!
+== Build Cache Concepts
 
-[source,groovy]
-----
-ext.isCiServer = System.getenv().containsKey("CI")
+=== Build cache key
+* Build cache key is calculated using 
+** Task implementation (including Gradle version)
+** Task action implementations
+** Names of the output properties
+** Names and values of task inputs
+* **NOTE**: Task name is not an input
 
-buildCache {
-    local {
-        enabled = !isCiServer
-    }
-    remote(HttpBuildCache) {
-        url = 'https://example.com:8123/build-cache/'
-        push = isCiServer
-    }
-}
-----
+=== Relationship with incremental builds
+* Reliable incremental builds are a prerequisite for cacheability
+* Be sure that your tasks are up-to-date when expected before trying to make them cacheable
+* Cacheable tasks require additional information for path sensitivity 
 
-== Conclusion
+=== Stable inputs
+* Inputs need to be _stable_ for reliable cache hits
+* Typical sources of volatility: 
+** Files or input properties that contain timestamps
+** Files or input properties that contains absolute file paths
+** Files or input properties influenced by non-determinstic ordering 
 
-== Thank you!
+=== Normalization
+* `@Classpath` -- treats files as a Java classpath
+* `@CompileClasspath` -- Extracts ABI from classes
+* Configurable runtime normalization:
+** Coarse method for removing inputs from up-to-date checks
+
+== Demos
+
+=== Incremental builds
+=== Stable inputs
+=== Normalization
+
+[%notitle]
+== Questions?
+image::questions.jpg[background, size=cover]
+
+== More resources
 
 * Slides: 
     - https://github.com/big-guy/gs-2017-cacheability[]
+* Demos:
+    - https://github.com/wolfs/summit-2017-examples[]
 * Build Cache Guide: 
     - https://guides.gradle.org/using-build-cache[]
-* https://twitter.com/wolfs42[Stefan Wolf (@wolfs42)]
-* https://twitter.com/argfile[Sterling Greene (@argfile)]
 
 Learn more at https://gradle.org[www.gradle.org]
+
+[%notitle]
+== Thanks
+image::outro.jpeg[background, size=cover]

@@ -26,19 +26,21 @@ asciidoctor {
             'idseparator': '-',
             'basedir': projectDir,
             'docinfo1': 'true',
+            'width': 1280,
+            'height': 720,
             'project-version': '1.0',
-	    'revealjs_transition':'linear',
-	    'revealjs_history':'true',
-	    'revealjs_slideNumber':'true',
-	    'revealjs_theme': 'beige',
+            'revealjs_transition':'linear',
+            'revealjs_history':'true',
+            'revealjs_slideNumber':'true',
+            'revealjs_theme': 'summit',
             'examples': file("${projectDir}/examples")
 
     options template_dirs: [new File(templateDir, 'asciidoctor-reveal.js-master/templates/slim').absolutePath]
 
     extensions {
 	inlinemacro (name: "screencast") { parent, target, attributes ->
-                def pid = "player-container-${UUID.randomUUID()}"
-		"""
+        def pid = "player-container-${UUID.randomUUID()}"
+"""
 <div id="$pid"></div>
   <script>
     asciinema_player.core.CreatePlayer('$pid', '${target}.json', { width: 114, height: 24, fontSize: 'medium' });
@@ -57,3 +59,5 @@ asciidoctor {
    */
 
 }
+
+assemble.dependsOn asciidoctor
