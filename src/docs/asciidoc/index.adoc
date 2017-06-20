@@ -37,7 +37,7 @@ https://twitter.com/wolfs42[Stefan Wolf (@wolfs42)] & https://twitter.com/argfil
 
 [%notitle]
 === Gradle CI improvements
-image::impact.png[background, size=cover]
+image::impact.png[Impact,100%,100%]
 
 == Build Cache Concepts
 
@@ -69,9 +69,10 @@ image::impact.png[background, size=cover]
 
 == Demos
 
-=== Incremental builds
-=== Stable inputs
-=== Normalization
+=== Incremental build
+=== Caching same workspace
+=== Missing task inputs
+=== Caching different workspace
 
 [%notitle]
 == Questions?
