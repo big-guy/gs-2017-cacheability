@@ -10,7 +10,7 @@ ifndef::sourcedir[:sourcedir: ../java]
 :menu:
 :status:
 
-https://twitter.com/wolfs42[Stefan Wolf (@wolfs42)] & https://twitter.com/argfile[Sterling Greene (@argfile)]
+https://twitter.com/wolfs42[Stefan Wolf (@wolfs42)] & https://twitter.com/argfile[Sterling Greene (@argfile)], Gradle
 
 == Agenda
 
