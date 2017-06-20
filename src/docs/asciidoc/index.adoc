@@ -35,8 +35,7 @@ https://twitter.com/wolfs42[Stefan Wolf (@wolfs42)] & https://twitter.com/argfil
 ** On your machine
 ** On CI
 
-[%notitle]
-=== Gradle CI improvements
+=== Gradle's CI Build
 image::impact.png[Impact,100%,100%]
 
 == Build Cache Concepts
