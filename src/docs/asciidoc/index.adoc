@@ -59,19 +59,19 @@ https://twitter.com/wolfs42[Stefan Wolf (@wolfs42)] & https://twitter.com/argfil
 
 === Stable inputs
 * Inputs need to be _stable_ for reliable cache hits
-* Typical sources of volatility: 
-** Files or input properties that contain timestamps
-** Files or input properties that contains absolute file paths
-** Files or input properties influenced by non-determinstic ordering 
+* Typical sources of volatility in files or input properties: 
+** Timestamps
+** Absolute file paths
+** Non-determinstic ordering 
 
 === Normalization
 * `@InputFiles` -- no normalization
-* `@CompileClasspath` -- Extracts ABI from classes
+* `@CompileClasspath` -- Extracts ABI from classes (https://summit.gradle.com/session/39175[Cedric's talk, 4:40 PM])
 * `@Classpath` -- treats files as a runtime Java classpath
-* Configurable runtime normalization:
-** Coarse method for removing inputs from up-to-date checks
+* Configurable runtime normalization to ignore files
 
 == Demos
+https://github.com/wolfs/summit-2017-examples[]
 
 === Incremental build
 === Caching same workspace
@@ -86,10 +86,10 @@ image::questions.jpg[background, size=cover]
 
 * Slides: 
     - https://github.com/big-guy/gs-2017-cacheability[]
-* Demos:
-    - https://github.com/wolfs/summit-2017-examples[]
 * Build Cache Guide: 
     - https://guides.gradle.org/using-build-cache[]
+* Gradle Enterprise: 
+    - https://gradle.com/build-cache[]
 
 Learn more at https://gradle.org[www.gradle.org]
 
