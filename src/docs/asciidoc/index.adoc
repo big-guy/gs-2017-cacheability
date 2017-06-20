@@ -27,16 +27,14 @@ https://twitter.com/wolfs42[Stefan Wolf (@wolfs42)] & https://twitter.com/argfil
 * Stable for Java in 4.0
 * Uniquely identifies outputs of tasks by inputs
 ** Keeps them in a local cache
-** Shares them with a remote cache (provided by Gradle Enterprise)
+** Shares them with a remote cache (provided by https://gradle.com/build-cache[Gradle Enterprise])
 
 === How does it help?
 
 * Save time by reusing outputs from other builds
 ** On your machine
 ** On CI
-
-=== Gradle's CI Build
-image::impact.png[Impact,100%,100%]
+* Our build saves https://blog.gradle.org/introducing-gradle-build-cache[25% on average], but YMMV.
 
 == Build Cache Concepts
 
@@ -49,9 +47,15 @@ image::impact.png[Impact,100%,100%]
 * **NOTE**: Task name is not an input
 
 === Relationship with incremental builds
-* Reliable incremental builds are a prerequisite for cacheability
-* Be sure that your tasks are up-to-date when expected before trying to make them cacheable
+* First, get reliable incremental builds
+* Next, get cacheable builds 
 * Cacheable tasks require additional information for path sensitivity 
+
+=== Repeatable outputs
+
+* Same inputs should produce same outputs
+* May be byte-for-byte equivalent
+* May be semantically equivalent (with normalization)
 
 === Stable inputs
 * Inputs need to be _stable_ for reliable cache hits
@@ -61,8 +65,9 @@ image::impact.png[Impact,100%,100%]
 ** Files or input properties influenced by non-determinstic ordering 
 
 === Normalization
-* `@Classpath` -- treats files as a Java classpath
+* `@InputFiles` -- no normalization
 * `@CompileClasspath` -- Extracts ABI from classes
+* `@Classpath` -- treats files as a runtime Java classpath
 * Configurable runtime normalization:
 ** Coarse method for removing inputs from up-to-date checks
 
